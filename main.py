@@ -16,7 +16,7 @@ database='billboard'
 @app.route('/')
 def home():
 	# connect to DB
-    cursor, connection = util.connect_to_db(username,password,host,port,database)
+    '''cursor, connection = util.connect_to_db(username,password,host,port,database)
 
     # execute SQL commands
     record = util.run_and_fetch_sql(cursor, "SELECT FROM;")
@@ -33,8 +33,16 @@ def home():
     # disconnect from database
     util.disconnect_from_db(connection,cursor)
     # using render_template function, Flask will search
-    # the file named index.html under templates folder
-    return render_template('index.html', sql_table = log, table_title=col_names)
+    # the file named index.html under templates folder'''
+    log = ''
+    col_names =''
+    return render_template('home.html', sql_table = log, table_title=col_names)
+
+def expenses():
+    return render_template('expenses.html')
+
+def monthlybills():
+    return render_template('monthlybills.html')
 
 
 if __name__ == '__main__':
