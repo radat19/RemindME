@@ -4,38 +4,47 @@
 {% block content %}
 
 <div class="container mt-3">
-        <h2>Remaining Payments</h2>            
+        <h2>Payments:</h2>            
         <table class="table table-bordered table-sm">
           <thead>
             <tr>
-              <th>Type</th>
-              <th>Progress</th>
+              <th>Subscription</th>
               <th>Date</th>
               <th>Amount</th>
+              <th>Type</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
+              <td>Gym Membership</td>
+              <td>01/03/2022</td>
               <td>$13</td>
+              <td>Monthly</td>
+              <td><button type="button" class="btn btn-outline-success">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button></td>
             </tr>
             <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-              <td>mary@example.com</td>
+              <td>Internet</td>
+              <td>01/03/2022</td>
               <td>$13</td>
+              <td>Monthly</td>
+              <td><button type="button" class="btn btn-outline-success">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button></td>
             </tr>
             <tr>
-              <td>July</td>
-              <td>Dooley</td>
-              <td>july@example.com</td>
+              <td>Phone</td>
+              <td>01/03/2022</td>
               <td>$12</td>
+              <td>Monthly</td>
+              <td><button type="button" class="btn btn-outline-success">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button></td>
             </tr>
           </tbody>
         </table>
+        <button type="button" class="btn btn-outline-primary">Add New Payment +</button>
       </div>
+        <br>
 
 
 {% endblock %}
