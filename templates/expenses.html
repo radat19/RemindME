@@ -16,47 +16,33 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Gym Membership</td>
-              <td>01/03/2022</td>
-              <td>$13</td>
-              <td>Monthly</td>
-              <td><button type="button" class="btn btn-outline-success">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Delete</button></td>
-            </tr>
-            <tr>
-              <td>Internet</td>
-              <td>01/03/2022</td>
-              <td>$13</td>
-              <td>Monthly</td>
-              <td><button type="button" class="btn btn-outline-success">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Delete</button></td>
-            </tr>
-            <tr>
-              <td>Phone</td>
-              <td>01/03/2022</td>
-              <td>$12</td>
-              <td>Monthly</td>
-              <td><button type="button" class="btn btn-outline-success">Edit</button>
-                <button type="button" class="btn btn-outline-danger">Delete</button></td>
-            </tr>
 
-            <!--
-            {% for bill in bill_list %}
-            <tr>
-                <td>{{bill.name}}</td>
-                <td>{{bill.date}}</td>
-                <td>{{bill.total_amt}}</td>
-                <td>{{bill.type}}</td>
+            {% for bill in bills_list %}
+
+              <tr>
+                <td>{{bill[2]}}</td>
+                <td>{{bill[6]}}</td>
+                <td>{{bill[4]}}</td>
+                <td>{{bill[3]}}</td>
                 <td><button type="button" class="btn btn-outline-success">Edit</button>
-                    <button type="button" class="btn btn-outline-danger">Delete</button></td>
-            </tr>
-            {% endfor %}-->
+                  <button type="button" class="btn btn-outline-danger">Delete</button></td>
+              </tr>
+  
+            {% endfor %}
           </tbody>
         </table>
         <button type="button" class="btn btn-outline-primary">Add New Payment +</button>
       </div>
         <br>
+
+      <div>
+        
+        {% for bill in bills_list %}
+        <p>Index[0]=id: {{bill[0]}}<br>   Index[1]=user_id: {{bill[1]}}<br>   Index[2]=name: {{bill[2]}}<br>   Index[3]=type: {{bill[3]}}<br> 
+           Index[4]=total_amt: {{bill[4]}}<br>  Index[5]=remain_amt: {{bill[5]}}<br>   Index[6]=due_date: {{bill[6]}}<br>   Index[7]=active: {{bill[7]}}<br></p>
+        {% endfor %}
+      
+      </div>
 
 
 {% endblock %}
