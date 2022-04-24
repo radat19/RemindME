@@ -1,17 +1,41 @@
-<html>
-	<head>
-		<title>Radat19</title>
-	</head>
-        <link rel= "stylesheet" href= "style.css">
-                        
-    <nav>
+<!-- /expenses -->
+{% extends 'base.html' %}
 
-        <ul>
-        <li><a href = "home.html">Home</a></li>
-        <li><a href = "monthlybills.html">MonthlyBills/a></li>
-        </ul>
-        
-    </nav>
+{% block content %}
 
-</html>
+<div class="container mt-3">
+        <h2>Remaining Payments</h2>            
+        <table class="table table-bordered table-sm">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Progress</th>
+              <th>Date</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john@example.com</td>
+              <td>$13</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+              <td>$13</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+              <td>$12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+{% endblock %}
         
