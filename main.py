@@ -40,8 +40,16 @@ def expenses():
     #cursor.execute("SELECT * FROM bills;")
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
 
-    ''''if request.method == 'POST':
-        util.run_and_insert(cursor, 'INSERT INTO bills')'''
+    if request.method == 'POST':
+        uid = request.form['user-id']
+        bill_name = request.form['bill-name']
+        bill_type = request.form['bill-type']
+        total = request.form['total-amount']
+        due = request.form['due-date']
+
+        util.run_and_insert_sql(cursor, connection, "INSERT INTO bills (user_id, name, type, total_amt, remain_amt, due_date, active)" 
+            " VALUES (" + uid + ",'" + bill_name + "','" + bill_type + "'," + total + "," + total + ",'" + due + "', True);")
+        print(uid)
 
     # disconnect from databae
     util.disconnect_from_db(connection,cursor)
