@@ -47,6 +47,9 @@ def expenses():
         bill_type = request.form['bill-type']
         total = request.form['total-amount']
         due = request.form['due-date']
+
+        util.run_and_insert_sql(cursor, connection, "INSERT INTO bills (user_id, name, type, total_amt, remain_amt, due_date, active)" 
+            " VALUES (" + uid + ",'" + bill_name + "','" + bill_type + "'," + total + "," + total + ",'" + due + "', True);")
         print(uid)
 
     # disconnect from databae
