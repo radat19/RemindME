@@ -38,9 +38,11 @@ def home():
     col_names =''
     return render_template('home.html', sql_table = log, table_title=col_names)
 
+@app.route('/expenses')
 def expenses():
     return render_template('expenses.html')
 
+@app.route('/monthlybills')
 def monthlybills():
     return render_template('monthlybills.html')
 
