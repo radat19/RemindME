@@ -55,7 +55,7 @@ def monthlybills():
     except:
         print("Couldn't connect to the database...")
 
-    chart_data = util.run_and_fetch_sql(cursor, "SELECT type, SUM(remain_amt) FROM bills GROUP BY type;")    
+    chart_data = util.run_and_fetch_sql(cursor, "SELECT type, SUM(remain_amt)::numeric::float8 FROM bills GROUP BY type;")    
 
     #cursor.execute("SELECT * FROM bills;")
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
