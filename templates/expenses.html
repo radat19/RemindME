@@ -25,13 +25,61 @@
                 <td>{{bill[4]}}</td>
                 <td>{{bill[3]}}</td>
                 <td><button type="button" class="btn btn-outline-success">Edit</button>
-                  <button type="button" class="btn btn-outline-danger">Delete</button></td>
-              </tr>
+                  <button type="button" class="btn btn-outline-danger" href="/delete/{{bill[0]}};">Delete</button></td>
+              </tr>]
   
             {% endfor %}
           </tbody>
         </table>
-        <button type="button" class="btn btn-outline-primary">Add New Payment +</button>
+
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPayment" data-bs-whatever="@mdo">Add New Payment +</button>
+
+        <div class="modal fade" id="addPayment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addPaymentModal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="id" class="col-form-label">id:</label>
+                    <input type="text" class="form-control" id="id">
+                  </div>
+                  <div class="mb-3">
+                    <label for="user_id" class="col-form-label">user id:</label>
+                    <input type="text" class="form-control" id="user-id">
+                  </div>
+                  <div class="mb-3">
+                    <label for="bill-name" class="col-form-label">bill name:</label>
+                    <input type="text" class="form-control" id="bill-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="bill-type" class="col-form-label">bill type: (Ex: recurring, One-time)</label>
+                    <input type="text" class="form-control" id="bill-type">
+                  </div>
+                  <div class="mb-3">
+                    <label for="total-amount" class="col-form-label">total amount: (Ex: 50.25)</label>
+                    <input type="text" class="form-control" id="total-amount">
+                  </div>
+                  <div class="mb-3">
+                    <label for="due-date" class="col-form-label">due date (mm/dd/yy):</label>
+                    <input type="text" class="form-control" id="due-date">
+                  </div>
+                  <div class="mb-3">
+                    <label for="remarks-text" class="col-form-label">remarks:</label>
+                    <textarea class="form-control" id="remarks-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Add Bill</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
         <br>
 

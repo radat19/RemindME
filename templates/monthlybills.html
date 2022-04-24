@@ -2,10 +2,80 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    
-
-    <div class="container mt-3">
-    </div>
+<div >
+        <h1>Month Year</h1>
+</div>
+<div class="google-chart" onload="draw_chart()">
+        <div id="chart_div" >
+        </div>
+        <div id="text-right">
+                <p>
+                        <h2>
+                                Total Payments
+                        </h2>
+                </p>
+        </div>
         
+</div>
+<br>
+<br>
+<div class="container mt-3">
+        <h2>Payments:</h2>            
+        <table class="table table-bordered table-sm">
+          <thead>
+            <tr>
+              <th>Subscription</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for bill in bills_list %}
+
+              <tr>
+                <td>{{bill[2]}}</td>
+                <td>{{bill[6]}}</td>
+                <td>{{bill[4]}}</td>
+                <td>{{bill[3]}}</td>
+              </tr>
+  
+            {% endfor %}
+          </tbody>
+        </table>
+</div>
+        <!--
+        <link rel= "stylesheet" href= "style.css">-->
+        
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['Work',     11],
+                        ['Eat',      2],
+                        ['Commute',  2],
+                        ['Watch TV', 2],
+                        ['Sleep',    7]
+                        ]);
+
+                var options = {
+                title: 'My Daily Activities',
+                pieHole: 0.4,
+                'width':400,
+                'height':300
+
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+        }
+</script>
+    
 {% endblock %}
+
+

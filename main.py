@@ -1,5 +1,5 @@
-from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
+
 import util
 
 app = Flask(__name__)
@@ -49,8 +49,27 @@ def expenses():
 
 @app.route('/monthlybills')
 def monthlybills():
-    return render_template('monthlybills.html')
+    try:
+        cursor, connection = util.connect_to_db(username,password,host,port,database)
+        print("Connected to the database!")
+    except:
+        print("Couldn't connect to the database...")
+    #cursor.execute("SELECT * FROM bills;")
+    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
+    print(bills)
+    util.disconnect_from_db(connection,cursor)
+    return render_template('monthlybills.html', bills_list = bills)
 
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    try:
+        cursor, connection = util.connect_to_db(username,password,host,port,database)
+        print("Connected to the database!")
+    except:
+        print("Couldn't connect to the database...")
+    delete_this = str("DELETE FROM bills WHERE id = " + id + ";")
+    util.run_and_insert_sql(cursor, delete_this)
 
 if __name__ == '__main__':
 	# set debug mode
