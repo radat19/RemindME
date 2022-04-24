@@ -10,7 +10,7 @@ username='admin'
 password='test'
 host='127.0.0.1'
 port='5432'
-database='billboard'
+database='remindme'
 
 
 @app.route('/')
@@ -38,7 +38,7 @@ def home():
     col_names =''
     return render_template('home.html', sql_table = log, table_title=col_names)
 
-@app.route('/expenses')
+@app.route('/expenses', methods=['GET', 'POST'])
 def expenses():
     return render_template('expenses.html')
 
