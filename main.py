@@ -54,11 +54,14 @@ def monthlybills():
         print("Connected to the database!")
     except:
         print("Couldn't connect to the database...")
+
+    chart_data = util.run_and_fetch_sql(cursor, "SELECT type, SUM(remain_amt) FROM bills GROUP BY type;")    
+
     #cursor.execute("SELECT * FROM bills;")
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
     print(bills)
     util.disconnect_from_db(connection,cursor)
-    return render_template('monthlybills.html', bills_list = bills)
+    return render_template('monthlybills.html', bills_list = bills, chart_data = chart_data)
 
 
 @app.route('/delete/<int:id>')
