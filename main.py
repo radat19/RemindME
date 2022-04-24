@@ -10,13 +10,13 @@ username='admin'
 password='test'
 host='127.0.0.1'
 port='5432'
-database='billboard'
+database='remindme'
 
 
 @app.route('/')
 def home():
 	# connect to DB
-    '''cursor, connection = util.connect_to_db(username,password,host,port,database)
+    cursor, connection = util.connect_to_db(username,password,host,port,database)
 
     # execute SQL commands
     record = util.run_and_fetch_sql(cursor, "SELECT FROM;")
@@ -40,7 +40,16 @@ def home():
 
 @app.route('/expenses')
 def expenses():
-    return render_template('expenses.html')
+    try:
+        cursor, connection = util.connect_to_db(username,password,host,port,database)
+        print("Connected to the database!")
+    except:
+        print("Couldn't connect to the database...")
+    #cursor.execute("SELECT * FROM bills;")
+    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
+    print(bills)
+    util.disconnect_from_db(connection,cursor)
+    return render_template('expenses.html', bills_list = bills)
 
 @app.route('/monthlybills')
 def monthlybills():
