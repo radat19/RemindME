@@ -26,7 +26,7 @@
                 <td>{{bill[3]}}</td>
                 <td><button type="button" class="btn btn-outline-success">Edit</button>
                   <button type="button" class="btn btn-outline-danger" href="/delete/{{bill[0]}};">Delete</button></td>
-              </tr>]
+              </tr>
   
             {% endfor %}
           </tbody>
@@ -42,40 +42,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="id" class="col-form-label">id:</label>
-                    <input type="text" class="form-control" id="id">
-                  </div>
+                <form action='/expenses' method='post'>
                   <div class="mb-3">
                     <label for="user_id" class="col-form-label">user id:</label>
-                    <input type="text" class="form-control" id="user-id">
+                    <input type="text" class="form-control" name="user-id">
                   </div>
                   <div class="mb-3">
                     <label for="bill-name" class="col-form-label">bill name:</label>
-                    <input type="text" class="form-control" id="bill-name">
+                    <input type="text" class="form-control" name="bill-name">
                   </div>
                   <div class="mb-3">
                     <label for="bill-type" class="col-form-label">bill type: (Ex: recurring, One-time)</label>
-                    <input type="text" class="form-control" id="bill-type">
+                    <input type="text" class="form-control" name="bill-type">
                   </div>
                   <div class="mb-3">
                     <label for="total-amount" class="col-form-label">total amount: (Ex: 50.25)</label>
-                    <input type="text" class="form-control" id="total-amount">
+                    <input type="text" class="form-control" name="total-amount">
                   </div>
                   <div class="mb-3">
                     <label for="due-date" class="col-form-label">due date (mm/dd/yy):</label>
-                    <input type="text" class="form-control" id="due-date">
+                    <input type="text" class="form-control" name="due-date">
                   </div>
                   <div class="mb-3">
                     <label for="remarks-text" class="col-form-label">remarks:</label>
                     <textarea class="form-control" id="remarks-text"></textarea>
                   </div>
-                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Add Bill</button>
+                <input type="submit" class="btn btn-primary" value='Add Bill'>
+                </form>
               </div>
             </div>
           </div>
@@ -84,7 +80,7 @@
         <br>
 
       <div>
-        
+
         {% for bill in bills_list %}
         <p>Index[0]=id: {{bill[0]}}<br>   Index[1]=user_id: {{bill[1]}}<br>   Index[2]=name: {{bill[2]}}<br>   Index[3]=type: {{bill[3]}}<br> 
            Index[4]=total_amt: {{bill[4]}}<br>  Index[5]=remain_amt: {{bill[5]}}<br>   Index[6]=due_date: {{bill[6]}}<br>   Index[7]=active: {{bill[7]}}<br></p>

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
+from datetime import datetime
 
 import util
 
@@ -40,8 +41,13 @@ def expenses():
     #cursor.execute("SELECT * FROM bills;")
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
 
-    ''''if request.method == 'POST':
-        util.run_and_insert(cursor, 'INSERT INTO bills')'''
+    if request.method == 'POST':
+        uid = request.form['user-id']
+        bill_name = request.form['bill-name']
+        bill_type = request.form['bill-type']
+        total = request.form['total-amount']
+        due = request.form['due-date']
+        print(uid)
 
     # disconnect from databae
     util.disconnect_from_db(connection,cursor)
