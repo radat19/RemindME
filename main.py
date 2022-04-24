@@ -19,36 +19,31 @@ def home():
 	# connect to DB
     cursor, connection = util.connect_to_db(username,password,host,port,database)
 
-    # execute SQL commands
-    record = util.run_and_fetch_sql(cursor, "SELECT FROM;")
+    # Get today's date
+    date = datetime.now().strftime('%Y-%m-%d')
 
-    if record == -1:
-        # you can replace this part with a 404 page
-        print('Something is wrong with the SQL command')
-    else:
-        # this will return all column names of the select result table
-        # ['customer_id','store_id','first_name','last_name','email','address_id','activebool','create_date','last_update','active']
-        col_names = [desc[0] for desc in cursor.description]
-        log = record
+    # execute SQL commands
+    upcoming_bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills WHERE due_date >= '" + date + "';")
 
     # disconnect from database
     util.disconnect_from_db(connection,cursor)
-    # using render_template function, Flask will search
-    # the file named index.html under templates folder'''
-    log = ''
-    col_names =''
-    return render_template('home.html', sql_table = log, table_title=col_names)
+    return render_template('home.html', bills_list = upcoming_bills)
 
-@app.route('/expenses')
+@app.route('/expenses', methods=['GET', 'POST'])
 def expenses():
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
         print("Connected to the database!")
     except:
         print("Couldn't connect to the database...")
+
     #cursor.execute("SELECT * FROM bills;")
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
-    print(bills)
+
+    ''''if request.method == 'POST':
+        util.run_and_insert(cursor, 'INSERT INTO bills')'''
+
+    # disconnect from databae
     util.disconnect_from_db(connection,cursor)
     return render_template('expenses.html', bills_list = bills)
 

@@ -9,30 +9,20 @@
           <thead>
             <tr>
               <th>Subscription</th>
-              <th>Progress</th>
               <th>Date</th>
-              <th>Amount</th>
+              <th>Remaining</th>
             </tr>
           </thead>
           <tbody>
+            {% for bill in bills_list %}
+
             <tr>
-              <td>Gym Membership</td>
-              <td>Paid</td>
-              <td>01/03/2022</td>
-              <td>$13</td>
+              <td>{{bill[2]}}</td>
+              <td>{{bill[6]}}</td>
+              <td>{{bill[5]}}</td>
             </tr>
-            <tr>
-              <td>Internet</td>
-              <td>Due</td>
-              <td>01/03/2022</td>
-              <td>$13</td>
-            </tr>
-            <tr>
-              <td>Phone</td>
-              <td>Paid</td>
-              <td>01/03/2022</td>
-              <td>$12</td>
-            </tr>
+
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -53,4 +43,8 @@
               <td>$13</td>
               <td>$1</td>
             </tr>
+
+            <p>
+            {{bills_list}}
+        </p>
 {% endblock %}

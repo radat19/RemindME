@@ -4,7 +4,7 @@ from psycopg2 import Error
 # this function is based on the tutorial at: https://pynative.com/python-postgresql-tutorial/
 
 
-def connect_to_db(username='admin', password='test', host='127.0.0.1', port='5432', database='billboard'):
+def connect_to_db(username='admin', password='test', host='127.0.0.1', port='5432', database='remindme'):
     try:
         # Connect to an existing database
         connection = psycopg2.connect(user=username,
