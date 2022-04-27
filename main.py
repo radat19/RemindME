@@ -56,8 +56,8 @@ def expenses():
     util.disconnect_from_db(connection,cursor)
     return render_template('expenses.html', bills_list = bills)
 
-@app.route('/expenses/edit', methods=['POST'])
-def edit():
+@app.route('/expenses/<int:id>/update', methods=['POST'])
+def update(id):
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
         print("Connected to the database!")
@@ -65,7 +65,6 @@ def edit():
         print("Couldn't connect to the database...")
 
     if request.method == 'POST':
-        uid = request.form['user-id']
         bill_name = request.form['bill-name']
         bill_type = request.form['bill-type']
         total = request.form['total-amount']
@@ -73,7 +72,8 @@ def edit():
 
         util.run_and_insert_sql(cursor, connection, "UPDATE bills SET name = '" + bill_name + 
             "', type = '" + bill_type + "', total_amt = " + total + ", remain_amt = " + total + 
-            ", due_date = '" + due + "', active = True WHERE id=2;")
+            ", due_date = '" + due + "', active = True WHERE id = " + str(id) + ";")
+
     return redirect(url_for('expenses'))
 
 @app.route('/expenses/<int:id>/delete', methods=['POST'])
