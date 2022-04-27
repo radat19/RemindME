@@ -12,3 +12,16 @@ GRANT ALL PRIVILEGES ON DATABASE remindme to admin; <br>
 exit <br>
 <br>
 <br>
+
+install pip
+install flask
+install requirements.txt
+
+set main.py as app.py
+export FLASK_APP=main.py
+
+set environment to developer
+export FLASK_ENV=development
+
+
+flask run
