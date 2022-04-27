@@ -34,11 +34,7 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <form action='/expenses/edit' method='post'>
-                            <div class="mb-3">
-                              <label for="user_id" class="col-form-label">user id:</label>
-                              <input type="text" class="form-control" name="user-id">
-                            </div>
+                          <form action="{{ url_for('update', id=bill[0]) }}" method="post">
                             <div class="mb-3">
                               <label for="bill-name" class="col-form-label">bill name:</label>
                               <input type="text" class="form-control" name="bill-name">
@@ -54,10 +50,6 @@
                             <div class="mb-3">
                               <label for="due-date" class="col-form-label">due date (yyyy-mm-dd):</label>
                               <input type="text" class="form-control" name="due-date">
-                            </div>
-                            <div class="mb-3">
-                              <label for="remarks-text" class="col-form-label">remarks:</label>
-                              <textarea class="form-control" id="remarks-text"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -104,7 +96,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="/expenses" method="post">
+                <form action="{{ url_for('expenses') }}" method="post">
                   <div class="mb-3">
                     <label for="user_id" class="col-form-label">user id:</label>
                     <input type="text" class="form-control" name="user-id">
@@ -124,10 +116,6 @@
                   <div class="mb-3">
                     <label for="due-date" class="col-form-label">due date (yyyy-mm-dd):</label>
                     <input type="text" class="form-control" name="due-date">
-                  </div>
-                  <div class="mb-3">
-                    <label for="remarks-text" class="col-form-label">remarks:</label>
-                    <textarea class="form-control" id="remarks-text"></textarea>
                   </div>
               </div>
               <div class="modal-footer">
