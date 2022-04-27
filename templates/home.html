@@ -3,48 +3,28 @@
 
 {% block content %}
 
-<div class="container mt-3">
-        <h2>Upcoming Payments Due:</h2>            
-        <table class="table table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Subscription</th>
-              <th>Date</th>
-              <th>Remaining</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for bill in bills_list %}
+<div class="container mt-3 card">
+  <h2>Upcoming Payments Due:</h2>            
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Subscription</th>
+        <th>Date</th>
+        <th>Remaining</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bill in bills_list %}
 
-            <tr>
-              <td>{{bill[2]}}</td>
-              <td>{{bill[6]}}</td>
-              <td>{{bill[5]}}</td>
-            </tr>
+      <tr>
+        <td>{{bill[2]}}</td>
+        <td>{{bill[6]}}</td>
+        <td>{{bill[5]}}</td>
+      </tr>
 
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-        <br>
-      <div class="container mt-3">
-        <h2>Total Amount</h2>            
-        <table class="table table-bordered table-sm">
-          <thead>
-            <tr>
-              <th>Total</th>
-              <th>Paid</th>
-              <th>Remaining</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>$14</td>
-              <td>$13</td>
-              <td>$1</td>
-            </tr>
-
-            <p>
-            
-        </p>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+     
 {% endblock %}

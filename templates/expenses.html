@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container mt-3">
+<div class="container mt-3 card">
         <h2>Payments:</h2>            
         <table class="table table-bordered table-sm">
           <thead>
@@ -129,14 +129,7 @@
       </div>
         <br>
 
-      <div>
-
-        {% for bill in bills_list %}
-        <p>Index[0]=id: {{bill[0]}}<br>   Index[1]=user_id: {{bill[1]}}<br>   Index[2]=name: {{bill[2]}}<br>   Index[3]=type: {{bill[3]}}<br> 
-           Index[4]=total_amt: {{bill[4]}}<br>  Index[5]=remain_amt: {{bill[5]}}<br>   Index[6]=due_date: {{bill[6]}}<br>   Index[7]=active: {{bill[7]}}<br></p>
-        {% endfor %}
-      
-      </div>
+     
 
 
 {% endblock %}
