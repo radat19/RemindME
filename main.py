@@ -38,7 +38,7 @@ def expenses():
         print("Couldn't connect to the database...")
 
     #cursor.execute("SELECT * FROM bills;")
-    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
+    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills ORDER BY due_date;")
 
     if request.method == 'POST':
         uid = request.form['user-id']
@@ -50,10 +50,45 @@ def expenses():
         util.run_and_insert_sql(cursor, connection, "INSERT INTO bills (user_id, name, type, total_amt, remain_amt, due_date, active)" 
             " VALUES (" + uid + ",'" + bill_name + "','" + bill_type + "'," + total + "," + total + ",'" + due + "', True);")
         print(uid)
+        return redirect(url_for('expenses'))
 
     # disconnect from databae
     util.disconnect_from_db(connection,cursor)
     return render_template('expenses.html', bills_list = bills)
+
+@app.route('/expenses/edit', methods=['POST'])
+def edit():
+    try:
+        cursor, connection = util.connect_to_db(username,password,host,port,database)
+        print("Connected to the database!")
+    except:
+        print("Couldn't connect to the database...")
+
+    if request.method == 'POST':
+        uid = request.form['user-id']
+        bill_name = request.form['bill-name']
+        bill_type = request.form['bill-type']
+        total = request.form['total-amount']
+        due = request.form['due-date']
+
+        util.run_and_insert_sql(cursor, connection, "UPDATE bills SET name = '" + bill_name + 
+            "', type = '" + bill_type + "', total_amt = " + total + ", remain_amt = " + total + 
+            ", due_date = '" + due + "', active = True WHERE id=2;")
+    return redirect(url_for('expenses'))
+
+@app.route('/expenses/<int:id>/delete', methods=['POST'])
+def delete_bill(id):
+    try:
+        cursor, connection = util.connect_to_db(username,password,host,port,database)
+        print("Connected to the database!")
+    except:
+        print("Couldn't connect to the database...")
+
+    if request.method == 'POST':
+        util.run_and_insert_sql(cursor, connection, "DELETE FROM bills WHERE id = " + str(id) + ";")
+        print(id)
+
+    return redirect(url_for('expenses'))
 
 @app.route('/monthlybills')
 def monthlybills():
