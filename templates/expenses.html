@@ -24,9 +24,9 @@
                 <td>{{bill[6]}}</td>
                 <td>{{bill[4]}}</td>
                 <td>{{bill[3]}}</td>
-                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target=".editPayment" data-bs-whatever="@mdo">Edit</button>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editPayment{{bill[0]}}" data-bs-whatever="@mdo">Edit</button>
 
-                  <div class="modal fade editPayment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editPaymentModal" aria-hidden="true">
+                  <div class="modal fade" id="editPayment{{bill[0]}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editPaymentModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -70,9 +70,9 @@
                   </div>
                 </div>
 
-                  <button type="button" class="btn btn-outline-danger"data-bs-toggle="modal" data-bs-target=".deletePayment" data-bs-whatever="@mdo">Delete</button>
+                  <button type="button" class="btn btn-outline-danger"data-bs-toggle="modal" data-bs-target="#deletePayment{{bill[0]}}" data-bs-whatever="@mdo">Delete</button>
 
-                  <div class="modal fade deletePayment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deletePaymentModal" aria-hidden="true">
+                  <div class="modal fade" id="deletePayment{{bill[0]}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deletePaymentModal" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
                         <form action="{{ url_for('delete_bill', id=bill[0]) }}" method="post">
