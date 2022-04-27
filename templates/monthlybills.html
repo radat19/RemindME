@@ -3,30 +3,35 @@
 
 {% block content %}
 <div >
-        <h1>Month Year</h1>
+        <h1>Remaining Amounts</h1>
 </div>
-<div class="google-chart" onload="draw_chart()">
-        <div id="chart_div" >
+
+<div class="row">
+        <div class="card col d-flex align-items-center justify-content-center" onload="draw_chart()">
+                <div id="chart_div" >
+                </div>
         </div>
-        <div id="text-right">
-                
-                <h2>Total Payments Remaining: </h2>
-                <script>
-                        var total = 0;
-                        console.log(total)
-                        {% for bills in chart_data %}
-                                total += parseFloat('{{ bills[1] }}');
+        <div class="card col d-flex align-items-center justify-content-center">
+                <div>
+                        
+                        <h2>Total Payments Remaining: </h2>
+                        <script>
+                                var total = 0;
                                 console.log(total)
-                        {% endfor %}
-                        document.write("$" + total.toFixed(2));
-                </script>
+                                {% for bills in chart_data %}
+                                        total += parseFloat('{{ bills[1] }}');
+                                        console.log(total)
+                                {% endfor %}
+                                document.write("$" + total.toFixed(2));
+                        </script>
+                        
+                </div>
                 
         </div>
-        
 </div>
 <br>
 <br>
-<div class="container mt-3">
+<div class="card container mt-3">
         <h2>Payments:</h2>            
         <table class="table table-bordered table-sm">
           <thead>
