@@ -18,7 +18,7 @@
                                 total += parseFloat('{{ bills[1] }}');
                                 console.log(total)
                         {% endfor %}
-                        document.write("$" + total);
+                        document.write("$" + total.toFixed(2));
                 </script>
                 
         </div>
