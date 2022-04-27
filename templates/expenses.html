@@ -24,8 +24,69 @@
                 <td>{{bill[6]}}</td>
                 <td>{{bill[4]}}</td>
                 <td>{{bill[3]}}</td>
-                <td><button type="button" class="btn btn-outline-success">Edit</button>
-                  <button type="button" class="btn btn-outline-danger" href="/delete/{{bill[0]}};">Delete</button></td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editPayment" data-bs-whatever="@mdo">Edit</button>
+
+                  <div class="modal fade" id="editPayment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editPaymentModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Edit Payment</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action='/expenses' method='post'>
+                            <div class="mb-3">
+                              <label for="user_id" class="col-form-label">user id:</label>
+                              <input type="text" class="form-control" name="user-id">
+                            </div>
+                            <div class="mb-3">
+                              <label for="bill-name" class="col-form-label">bill name:</label>
+                              <input type="text" class="form-control" name="bill-name">
+                            </div>
+                            <div class="mb-3">
+                              <label for="bill-type" class="col-form-label">bill type: (Ex: recurring, One-time)</label>
+                              <input type="text" class="form-control" name="bill-type">
+                            </div>
+                            <div class="mb-3">
+                              <label for="total-amount" class="col-form-label">total amount: (Ex: 50.25)</label>
+                              <input type="text" class="form-control" name="total-amount">
+                            </div>
+                            <div class="mb-3">
+                              <label for="due-date" class="col-form-label">due date (yyyy-mm-dd):</label>
+                              <input type="text" class="form-control" name="due-date">
+                            </div>
+                            <div class="mb-3">
+                              <label for="remarks-text" class="col-form-label">remarks:</label>
+                              <textarea class="form-control" id="remarks-text"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <input type="submit" class="btn btn-primary" value='Edit Bill'>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <button type="button" class="btn btn-outline-danger"data-bs-toggle="modal" data-bs-target="#deletePayment" data-bs-whatever="@mdo">Delete</button>
+
+                  <div class="modal fade" id="deletePayment" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deletePaymentModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete Payment?</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <input type="submit" class="btn btn-primary" value='Yes'>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </tr>
   
             {% endfor %}
