@@ -14,7 +14,8 @@
         <div class="card col d-flex align-items-center justify-content-center">
                 <div>
                         
-                        <h2>Total Payments Remaining: </h2>
+                        <h2>Total Payments Remaining:</h2>
+                        
                         <script>
                                 var total = 0;
                                 console.log(total)
@@ -22,7 +23,7 @@
                                         total += parseFloat('{{ bills[1] }}');
                                         console.log(total)
                                 {% endfor %}
-                                document.write("$" + total.toFixed(2));
+                                document.write("$ " + total.toFixed(2));
                         </script>
                         
                 </div>
