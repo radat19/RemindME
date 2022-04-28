@@ -109,19 +109,23 @@
               <div class="modal-body">
                 <form action="{{ url_for('expenses') }}" method="post">
                   <div class="mb-3">
-                    <label for="bill-name" class="col-form-label">bill name:</label>
+                    <label for="bill-name" class="col-form-label">Bill Name:</label>
                     <input type="text" class="form-control" name="bill-name">
                   </div>
                   <div class="mb-3">
-                    <label for="bill-type" class="col-form-label">bill type: (Ex: recurring, One-time)</label>
-                    <input type="text" class="form-control" name="bill-type">
+                    <label for="bill-type" class="col-form-label">Bill Type:</label>
+                    <select class="form-control" name="bill-type">
+                      <option value="Bill">Bill</option>
+                      <option value="Subscription">Subscription</option>
+                      <option value="One-Time">One-Time</option>
+                    </select>
                   </div>
                   <div class="mb-3">
-                    <label for="total-amount" class="col-form-label">total amount: (Ex: 50.25)</label>
+                    <label for="total-amount" class="col-form-label">Total Amount: (Ex: 50.25)</label>
                     <input type="text" class="form-control" name="total-amount">
                   </div>
                   <div class="mb-3">
-                    <label for="due-date" class="col-form-label">due date (yyyy-mm-dd):</label>
+                    <label for="due-date" class="col-form-label">Due Date (yyyy-mm-dd):</label>
                     <input type="text" class="form-control" name="due-date">
                   </div>
               </div>
