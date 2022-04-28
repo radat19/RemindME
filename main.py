@@ -102,7 +102,7 @@ def statement():
     chart_data = util.run_and_fetch_sql(cursor, "SELECT type, SUM(remain_amt)::numeric::float8 FROM bills GROUP BY type;")    
 
     #cursor.execute("SELECT * FROM bills;")
-    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills;")
+    bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills ORDER BY due_date;")
     print(bills)
     util.disconnect_from_db(connection,cursor)
     return render_template('monthlybills.html', bills_list = bills, chart_data = chart_data)
