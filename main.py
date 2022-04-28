@@ -23,13 +23,14 @@ def home():
     date = datetime.now().strftime('%Y-%m-%d')
 
     # execute SQL commands
-    upcoming_bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills WHERE due_date >= '" + date + "';")
+    upcoming_bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills WHERE due_date >= '" + date + 
+        "' AND active = True ORDER BY due_date;")
 
     # disconnect from database
     util.disconnect_from_db(connection,cursor)
     return render_template('home.html', bills_list = upcoming_bills)
 
-@app.route('/expenses', methods=['GET', 'POST'])
+@app.route('/update', methods=['GET', 'POST'])
 def expenses():
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
@@ -56,7 +57,7 @@ def expenses():
     util.disconnect_from_db(connection,cursor)
     return render_template('expenses.html', bills_list = bills)
 
-@app.route('/expenses/<int:id>/update', methods=['POST'])
+@app.route('/update/<int:id>', methods=['POST'])
 def update(id):
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
@@ -76,7 +77,7 @@ def update(id):
 
     return redirect(url_for('expenses'))
 
-@app.route('/expenses/<int:id>/delete', methods=['POST'])
+@app.route('/update/<int:id>/del', methods=['POST'])
 def delete_bill(id):
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
@@ -90,8 +91,8 @@ def delete_bill(id):
 
     return redirect(url_for('expenses'))
 
-@app.route('/monthlybills')
-def monthlybills():
+@app.route('/statement')
+def statement():
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
         print("Connected to the database!")
@@ -107,15 +108,31 @@ def monthlybills():
     return render_template('monthlybills.html', bills_list = bills, chart_data = chart_data)
 
 
-@app.route('/delete/<int:id>')
-def delete(id):
+@app.route('/pay/<int:id>', methods=['POST'])
+def pay_bill(id):
     try:
         cursor, connection = util.connect_to_db(username,password,host,port,database)
         print("Connected to the database!")
     except:
         print("Couldn't connect to the database...")
-    delete_this = str("DELETE FROM bills WHERE id = " + id + ";")
-    util.run_and_insert_sql(cursor, delete_this)
+
+    if request.method == 'POST':
+        payment = int(request.form['pay-amt'])
+        remaining = util.run_and_fetch_sql(cursor, "SELECT remain_amt::numeric::float8 FROM bills WHERE id = " + str(id) + ";")[0][0]
+        new_remain = remaining - payment
+        paid = "True"
+
+        # Deactivates ability to make payments on this bill
+        if new_remain <= 0:
+            new_remain = 0
+            paid = "False"
+        
+        util.run_and_insert_sql(cursor, connection, "UPDATE bills SET remain_amt = " + str(new_remain) +
+           ", active = " + paid + " WHERE id = " + str(id) + ";")
+
+    return redirect(url_for('home'))
+
+
 
 if __name__ == '__main__':
 	# set debug mode

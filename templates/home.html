@@ -20,6 +20,32 @@
         <td>{{bill[2]}}</td>
         <td>{{bill[6]}}</td>
         <td>{{bill[5]}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-success"data-bs-toggle="modal" data-bs-target="#pay{{bill[0]}}" data-bs-whatever="@mdo">Pay</button>
+
+            <div class="modal fade" id="pay{{bill[0]}}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="deletePaymentModal" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <form action="{{ url_for('pay_bill', id=bill[0]) }}" method="post">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Pay Bill</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="pay-amt" class="col-form-label">Amount: $</label>
+                        <input type="text" class="form-control" name="pay-amt">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <input type="submit" class="btn btn-primary" value='Pay'>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </td>
       </tr>
 
       {% endfor %}
