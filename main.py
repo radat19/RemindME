@@ -14,6 +14,7 @@ port='5432'
 database='remindme'
 
 
+
 @app.route('/')
 def home():
 	# connect to DB
@@ -42,15 +43,13 @@ def expenses():
     bills = util.run_and_fetch_sql(cursor, "SELECT * FROM bills ORDER BY due_date;")
 
     if request.method == 'POST':
-        uid = request.form['user-id']
         bill_name = request.form['bill-name']
         bill_type = request.form['bill-type']
         total = request.form['total-amount']
         due = request.form['due-date']
 
         util.run_and_insert_sql(cursor, connection, "INSERT INTO bills (user_id, name, type, total_amt, remain_amt, due_date, active)" 
-            " VALUES (" + uid + ",'" + bill_name + "','" + bill_type + "'," + total + "," + total + ",'" + due + "', True);")
-        print(uid)
+            " VALUES (1,'" + bill_name + "','" + bill_type + "'," + total + "," + total + ",'" + due + "', True);")
         return redirect(url_for('expenses'))
 
     # disconnect from databae
@@ -69,11 +68,12 @@ def update(id):
         bill_name = request.form['bill-name']
         bill_type = request.form['bill-type']
         total = request.form['total-amount']
+        remain = request.form['remain-amount']
         due = request.form['due-date']
 
         util.run_and_insert_sql(cursor, connection, "UPDATE bills SET name = '" + bill_name + 
-            "', type = '" + bill_type + "', total_amt = " + total + ", remain_amt = " + total + 
-            ", due_date = '" + due + "', active = True WHERE id = " + str(id) + ";")
+            "', type = '" + bill_type + "', total_amt = '" + total + "', remain_amt = '" + remain + 
+            "', due_date = '" + due + "', active = True WHERE id = " + str(id) + ";")
 
     return redirect(url_for('expenses'))
 

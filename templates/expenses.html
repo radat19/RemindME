@@ -38,20 +38,24 @@
                         <div class="modal-body">
                           <form action="{{ url_for('update', id=bill[0]) }}" method="post">
                             <div class="mb-3">
-                              <label for="bill-name" class="col-form-label">bill name:</label>
-                              <input type="text" class="form-control" name="bill-name">
+                              <label for="bill-name" class="col-form-label">Bill Name:</label>
+                              <input type="text" class="form-control" name="bill-name" value="{{bill[2]}}">
                             </div>
                             <div class="mb-3">
-                              <label for="bill-type" class="col-form-label">bill type: (Ex: recurring, One-time)</label>
-                              <input type="text" class="form-control" name="bill-type">
+                              <label for="bill-type" class="col-form-label">Bill Type: (Ex: Recurring, One-time)</label>
+                              <input type="text" class="form-control" name="bill-type" value="{{bill[3]}}">
                             </div>
                             <div class="mb-3">
-                              <label for="total-amount" class="col-form-label">total amount: (Ex: 50.25)</label>
-                              <input type="text" class="form-control" name="total-amount">
+                              <label for="total-amount" class="col-form-label">Total Amount: (Ex: 50.25)</label>
+                              <input type="text" class="form-control" name="total-amount" value="{{bill[4]}}">
                             </div>
                             <div class="mb-3">
-                              <label for="due-date" class="col-form-label">due date (yyyy-mm-dd):</label>
-                              <input type="text" class="form-control" name="due-date">
+                              <label for="total-amount" class="col-form-label">Remain Amount: (Ex: 50.25)</label>
+                              <input type="text" class="form-control" name="remain-amount" value="{{bill[5]}}">
+                            </div>
+                            <div class="mb-3">
+                              <label for="due-date" class="col-form-label">Due Date (yyyy-mm-dd):</label>
+                              <input type="text" class="form-control" name="due-date" value="{{bill[6]}}">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -100,10 +104,6 @@
               <div class="modal-body">
                 <form action="{{ url_for('expenses') }}" method="post">
                   <div class="mb-3">
-                    <label for="user_id" class="col-form-label">user id:</label>
-                    <input type="text" class="form-control" name="user-id">
-                  </div>
-                  <div class="mb-3">
                     <label for="bill-name" class="col-form-label">bill name:</label>
                     <input type="text" class="form-control" name="bill-name">
                   </div>
@@ -121,8 +121,8 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <input type="submit" class="btn btn-primary" value='Add Bill'>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
               </div>
             </div>
