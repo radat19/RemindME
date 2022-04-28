@@ -42,8 +42,13 @@
                               <input type="text" class="form-control" name="bill-name" value="{{bill[2]}}">
                             </div>
                             <div class="mb-3">
-                              <label for="bill-type" class="col-form-label">Bill Type: (Ex: Recurring, One-time)</label>
-                              <input type="text" class="form-control" name="bill-type" value="{{bill[3]}}">
+                              <label for="bill-type" class="col-form-label">Bill Type:</label>
+                              <!--<input type="text" class="form-control" name="bill-type" value="{{bill[3]}}">-->
+                              <select class="form-control" name="bill-type">
+                                <option value="Bill">Bill</option>
+                                <option value="Subscription">Subscription</option>
+                                <option value="One-Time">One-Time</option>
+                              </select>
                             </div>
                             <div class="mb-3">
                               <label for="total-amount" class="col-form-label">Total Amount: (Ex: 50.25)</label>
